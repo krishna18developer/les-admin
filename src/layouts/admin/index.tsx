@@ -20,7 +20,7 @@ export default function Dashboard(props: { [x: string]: any }) {
     return window.location.pathname !== '/admin/full-screen-maps';
   };
   const getActiveRoute = (routes: RoutesType[]): string => {
-    let activeRoute = 'Default Brand Text';
+    let activeRoute = 'Lab Examination System';
     for (let i = 0; i < routes.length; i++) {
       if (
         window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
@@ -88,19 +88,7 @@ export default function Dashboard(props: { [x: string]: any }) {
           transitionProperty="top, bottom, width"
           transitionTimingFunction="linear, linear, ease"
         >
-          <Portal>
-            <Box>
-              <Navbar
-                onOpen={onOpen}
-                logoText={'Horizon UI Dashboard PRO'}
-                brandText={getActiveRoute(routes)}
-                secondary={getActiveNavbar(routes)}
-                message={getActiveNavbarText(routes)}
-                fixed={fixed}
-                {...rest}
-              />
-            </Box>
-          </Portal>
+
 
           {getRoute() ? (
             <Box

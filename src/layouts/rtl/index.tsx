@@ -21,7 +21,7 @@ export default function Dashboard(props: { [x: string]: any }) {
     return window.location.pathname !== '/rtl/full-screen-maps';
   };
   const getActiveRoute = (routes: RoutesType[]): string => {
-    let activeRoute = 'Default Brand Text';
+    let activeRoute = 'Lab Examination System';
     for (let i = 0; i < routes.length; i++) {
       if (
         window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
@@ -93,7 +93,7 @@ export default function Dashboard(props: { [x: string]: any }) {
             <Box>
               <Navbar
                 onOpen={onOpen}
-                logoText={'Horizon UI Dashboard'}
+                logoText={'Lab Examination System Dashboard'}
                 brandText={getActiveRoute(routes)}
                 secondary={getActiveNavbar(routes)}
                 message={getActiveNavbarText(routes)}
