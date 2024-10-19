@@ -21,6 +21,7 @@ import MainDashboard from 'views/admin/default';
 import UsersPage from 'views/admin/users';
 import Profile from 'views/admin/profile';
 import DataTables from 'views/admin/dataTables';
+import QuestionsPage from 'views/admin/questions';
 import RTL from 'views/admin/rtl';
 
 // Auth Imports
@@ -48,42 +49,42 @@ const routes = [
     name: 'Questions',
     layout: '/admin',
     icon: <Icon as={MdQuestionMark} width="20px" height="20px" color="inherit" />,
-    path: '/data-tables',
-    component: <DataTables />,
+    path: '/questions',
+    component: <QuestionsPage />,
   },
   {
     name: 'Subjects',
     layout: '/admin',
     icon: <Icon as={MdBook} width="20px" height="20px" color="inherit" />,
-    path: '/data-tables',
+    path: '/subjects',
     component: <DataTables />,
   },
   {
     name: 'Rooms',
     layout: '/admin',
     icon: <Icon as={MdRoom} width="20px" height="20px" color="inherit" />,
-    path: '/data-tables',
+    path: '/rooms',
     component: <DataTables />,
   },
   {
     name: 'Exams',
     layout: '/admin',
     icon: <Icon as={MdAssignment} width="20px" height="20px" color="inherit" />,
-    path: '/data-tables',
+    path: '/exams',
     component: <DataTables />,
   },
   {
     name: 'Answer Scripts',
     layout: '/admin',
     icon: <Icon as={MdAssignmentReturned} width="20px" height="20px" color="inherit" />,
-    path: '/data-tables',
+    path: '/answer-scripts',
     component: <DataTables />,
   },
   {
     name: 'Reports',
     layout: '/admin',
     icon: <Icon as={MdAnalytics} width="20px" height="20px" color="inherit" />,
-    path: '/data-tables',
+    path: '/reports',
     component: <DataTables />,
   },
   {
