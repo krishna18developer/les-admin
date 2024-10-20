@@ -5,25 +5,11 @@ import CheckTable from 'views/admin/dataTables/components/CheckTable';
 import ColumnsTable from 'views/admin/questions/components/ColumnsTable'
 import ComplexTable from 'views/admin/dataTables/components/ComplexTable'; 
 import { useEffect, useState } from 'react';
-
-type TestCase = {
-	Input:  string;
-	Output: string;
-	Hidden: boolean;
-}
-
-type Question = {
-	ID: string;
-	Difficulty: number;
-	QuestionTitle: string;
-	QuestionDescription: string;
-	TestCases: TestCase[];   
-};
-
+import { GetAllQuestions, Question } from 'api/questions';
 
 const sampleQuestions: Question[] = [
 	{
-		ID:"",
+		id:"6704e3c7d7bad24da40dc95e",
 		Difficulty:2,
 		QuestionTitle: "Sum of Two Numbers",
 		QuestionDescription: "Find Sum of two numbers",
@@ -38,14 +24,23 @@ const sampleQuestions: Question[] = [
 ]
 
 export default function QuestionsPage() {
-	const [questions, setQuestions] = useState<number>(0);
+	const [questions, setQuestions] = useState<Question[]>([]);
 
-	
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            const result = await GetAllQuestions(); // Assuming it's an async function
+            setQuestions(result || []); // Update state with the fetched questions
+            console.log("Questions fetched:", result);
+        };
+
+        fetchQuestions(); // Call the function to fetch data
+    }, []); // Empty dependency array ensures this runs only once after the component mounts
+
 	// Chakra Color Mode
 	return (
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
 			<SimpleGrid mb='20px' >
-				<ColumnsTable tableData={sampleQuestions} />
+				<ColumnsTable tableData={questions.length ? questions : []} />
 			</SimpleGrid>
 		</Box>
 	);
