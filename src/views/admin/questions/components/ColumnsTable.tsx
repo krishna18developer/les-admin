@@ -1,4 +1,4 @@
-import { Flex, Box, Table, Checkbox, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Box, Table, Checkbox, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Button, Icon } from '@chakra-ui/react';
 import * as React from 'react';
 
 import {
@@ -13,15 +13,22 @@ import {
 // Custom components
 import Card from 'components/card/Card';
 import Menu from 'components/menu/MainMenu';
+import { Md10K, MdEdit } from 'react-icons/md';
+type TestCase = {
+	Input:  string;
+	Output: string;
+	Hidden: boolean;
+}
 
-type RowObj = {
-	name: string;
-	progress: string;
-	quantity: number;
-	date: string; 
+type Question = {
+	ID: string;
+	Difficulty: number;
+	QuestionTitle: string;
+	QuestionDescription: string;
+	TestCases: TestCase[];   
 };
- 
-const columnHelper = createColumnHelper<RowObj>();
+
+const columnHelper = createColumnHelper<Question>();
 
 // const columns = columnsDataCheck;
 export default function ColumnTable(props: { tableData: any }) {
@@ -31,15 +38,15 @@ export default function ColumnTable(props: { tableData: any }) {
 	const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
 	let defaultData= tableData;
 	const columns = [
-		columnHelper.accessor('name', {
-			id: 'name',
+		columnHelper.accessor('QuestionTitle', {
+			id: 'QuestionTitle',
 			header: () => (
 				<Text
 					justifyContent='space-between'
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					NAME
+					Question
 				</Text>
 			),
 			cell: (info: any) => (
@@ -50,15 +57,15 @@ export default function ColumnTable(props: { tableData: any }) {
 				</Flex>
 			)
 		}),
-		columnHelper.accessor('progress', {
-			id: 'progress',
+		columnHelper.accessor('QuestionDescription', {
+			id: 'QuestionDescription',
 			header: () => (
 				<Text
 					justifyContent='space-between'
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					PROGRESS
+					Description
 				</Text>
 			),
 			cell: (info) => (
@@ -67,32 +74,15 @@ export default function ColumnTable(props: { tableData: any }) {
 				</Text>
 			)
 		}),
-		columnHelper.accessor('quantity', {
-			id: 'quantity',
+		columnHelper.accessor('Difficulty', {
+			id: 'Difficulty',
 			header: () => (
 				<Text
 					justifyContent='space-between'
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					QUANTITY
-				</Text>
-			),
-			cell: (info) => (
-				<Text color={textColor} fontSize='sm' fontWeight='700'>
-					{info.getValue()}
-				</Text>
-			)
-		}),
-		columnHelper.accessor('date', {
-			id: 'date',
-			header: () => (
-				<Text
-					justifyContent='space-between'
-					align='center'
-					fontSize={{ sm: '10px', lg: '12px' }}
-					color='gray.400'>
-					DATE
+					Difficulty
 				</Text>
 			),
 			cell: (info) => (
@@ -101,6 +91,7 @@ export default function ColumnTable(props: { tableData: any }) {
 				</Text>
 			)
 		})
+		
 	];
 	const [ data, setData ] = React.useState(() => [ ...defaultData ]);
 	const table = useReactTable({
@@ -118,7 +109,7 @@ export default function ColumnTable(props: { tableData: any }) {
 		<Card flexDirection='column' w='100%' px='0px' overflowX={{ sm: 'scroll', lg: 'hidden' }}>
 			<Flex px='25px' mb="8px" justifyContent='space-between' align='center'>
 				<Text color={textColor} fontSize='22px' mb="4px" fontWeight='700' lineHeight='100%'>
-					Check Table
+					Questions
 				</Text>
 				<Menu />
 			</Flex>
@@ -167,6 +158,13 @@ export default function ColumnTable(props: { tableData: any }) {
 											</Td>
 										);
 									})}
+									<Button
+									fontSize={{ sm: '14px' }}
+									minW={{ sm: '150px', md: '200px', lg: 'auto' }}
+									borderColor='transparent'
+									>
+									<Icon as={MdEdit} color="inherit" />
+									</Button>
 								</Tr>
 							);
 						})}
