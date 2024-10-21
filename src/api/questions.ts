@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./api";
 
 export type TestCase = {
 	Input:  string;
@@ -13,16 +13,12 @@ export type Question = {
 	TestCases: TestCase[];   
 };
 
-
 export async function GetAllQuestions(): Promise<Question[]> {
-    const url = process.env.REACT_APP_LES_API_URL + "/v1/questions/";
-    console.log(url);
-
     try {
-        const response = await axios.get(url, {
+        const response = await api.get("/v1/questions/", {
             headers: {
-                Authorization: localStorage.getItem("token") || ''
-            },
+                Authorization: localStorage.getItem("token")
+            }
         });
         
         console.log(response.data.Data); // Log the fetched data
@@ -35,10 +31,7 @@ export async function GetAllQuestions(): Promise<Question[]> {
 }
 
 export function DeleteQuestion(id: string) {
-    const url = process.env.REACT_APP_LES_API_URL + "/v1/questions/" + id
-    console.log(url)
-
-    axios.delete(url, {
+    api.delete("/v1/questions/" + id, {
         headers: {
             Authorization: localStorage.getItem("token")
         },

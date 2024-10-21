@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./api";
 
 export type Exam = {
 	id: string;
@@ -9,11 +9,8 @@ export type Exam = {
 
 
 export async function GetAllExams(): Promise<Exam[]> {
-    const url = process.env.REACT_APP_LES_API_URL + "/v1/exams/";
-    console.log(url);
-
     try {
-        const response = await axios.get(url, {
+        const response = await api.get("url", {
             headers: {
                 Authorization: localStorage.getItem("token") || ''
             },
@@ -29,10 +26,7 @@ export async function GetAllExams(): Promise<Exam[]> {
 }
 
 export function DeleteExam(id: string) {
-    const url = process.env.REACT_APP_LES_API_URL + "/v1/exams/" + id
-    console.log(url)
-
-    axios.delete(url, {
+    api.delete("url", {
         headers: {
             Authorization: localStorage.getItem("token")
         },

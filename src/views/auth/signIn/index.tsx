@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 // Chakra imports
 import {
@@ -46,6 +46,10 @@ function SignIn() {
     { bg: "secondaryGray.300" },
     { bg: "whiteAlpha.200" }
   );
+
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (
@@ -128,6 +132,9 @@ function SignIn() {
               mb='24px'
               fontWeight='500'
               size='lg'
+              onChange={(e)=> {
+                setUsername(e.target.value);
+              }}
             />
             <FormLabel
               ms='4px'
@@ -146,6 +153,9 @@ function SignIn() {
                 size='lg'
                 type={show ? "text" : "password"}
                 variant='auth'
+                onChange={(e)=> {
+                  setPassword(e.target.value);
+                }}
               />
               <InputRightElement display='flex' alignItems='center' mt='4px'>
                 <Icon
@@ -190,7 +200,8 @@ function SignIn() {
               h='50'
               mb='24px'
               onClick={()=>{
-                Login("sfd",'dsfd');
+                Login(username,password);
+                window.location.href = "/";
               }}
               >
               Sign In
