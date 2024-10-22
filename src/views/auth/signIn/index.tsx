@@ -199,9 +199,8 @@ function SignIn() {
               w='100%'
               h='50'
               mb='24px'
-              onClick={()=>{
-                Login(username,password);
-                window.location.href = "/";
+              onClick={async ()=>{
+                await Login(username,password);
               }}
               >
               Sign In

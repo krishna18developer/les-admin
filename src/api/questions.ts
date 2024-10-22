@@ -17,7 +17,7 @@ export async function GetAllQuestions(): Promise<Question[]> {
     try {
         const response = await api.get("/v1/questions/", {
             headers: {
-                Authorization: localStorage.getItem("token")
+                Authorization: `Bearer ${localStorage.getItem("token")}`
             }
         });
         
@@ -27,13 +27,13 @@ export async function GetAllQuestions(): Promise<Question[]> {
     } catch (error) {
         console.error("Error fetching questions:", error);
         return null; // Return null if there's an error
-    }
+    } 
 }
 
 export function DeleteQuestion(id: string) {
     api.delete("/v1/questions/" + id, {
         headers: {
-            Authorization: localStorage.getItem("token")
+            Authorization: `Bearer ${localStorage.getItem("token")}`
         },
       })
       .then(({data}) => {
