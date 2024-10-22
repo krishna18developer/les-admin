@@ -2,9 +2,15 @@ import axios from "axios";
 
 export type User = {
 	id: string;
-	Difficulty: number;
-	QuestionTitle: string;
-	QuestionDescription: string;
+	Name: string;
+	Username: string;
+	Password: string;
+    Email: string;
+    Role: string;
+    Year: Number;
+    Branch: string;
+    Section: string;
+    Department: string;
 };
 
 
@@ -23,12 +29,12 @@ export async function GetAllUsers(): Promise<User[]> {
         return response.data.Data; // Return the questions array
 
     } catch (error) {
-        console.error("Error fetching questions:", error);
+        console.error("Error fetching users:", error);
         return null; // Return null if there's an error
     }
 }
 
-export function DeleteUsers(id: string) {
+export function DeleteUser(id: string) {
     const url = process.env.REACT_APP_LES_API_URL + "/v1/users/" + id
     console.log(url)
 
