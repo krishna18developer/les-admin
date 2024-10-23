@@ -25,6 +25,11 @@ import QuestionsPage from 'views/admin/questions';
 
 // Auth Imports
 import SignInCentered from 'views/auth/signIn';
+import SubjectsPage from 'views/admin/subjects';
+import RoomsPage from 'views/admin/rooms';
+import ExamsPage from 'views/admin/exams';
+import AnswerScriptsPage from 'views/admin/answerscripts';
+import ReportsPage from 'views/admin/reports';
 
 const routes = [
   {
@@ -56,35 +61,35 @@ const routes = [
     layout: '/admin',
     icon: <Icon as={MdBook} width="20px" height="20px" color="inherit" />,
     path: '/subjects',
-    component: <DataTables />,
+    component: <SubjectsPage />,
   },
   {
     name: 'Rooms',
     layout: '/admin',
     icon: <Icon as={MdRoom} width="20px" height="20px" color="inherit" />,
     path: '/rooms',
-    component: <DataTables />,
+    component: <RoomsPage />,
   },
   {
     name: 'Exams',
     layout: '/admin',
     icon: <Icon as={MdAssignment} width="20px" height="20px" color="inherit" />,
     path: '/exams',
-    component: <DataTables />,
+    component: <ExamsPage />,
   },
   {
     name: 'Answer Scripts',
     layout: '/admin',
     icon: <Icon as={MdAssignmentReturned} width="20px" height="20px" color="inherit" />,
     path: '/answer-scripts',
-    component: <DataTables />,
+    component: <AnswerScriptsPage />,
   },
   {
     name: 'Reports',
     layout: '/admin',
     icon: <Icon as={MdAnalytics} width="20px" height="20px" color="inherit" />,
     path: '/reports',
-    component: <DataTables />,
+    component: <ReportsPage />,
   },
   {
     name: 'Profile',

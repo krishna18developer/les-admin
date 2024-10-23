@@ -1,5 +1,6 @@
 // Chakra imports
 import { Portal, Box, useDisclosure } from '@chakra-ui/react';
+import { CheckIfLoggedIn } from 'api/auth';
 import Footer from 'components/footer/FooterAdmin';
 // Layout components
 import Navbar from 'components/navbar/NavbarAdmin';
@@ -65,6 +66,8 @@ export default function Dashboard(props: { [x: string]: any }) {
   };
   document.documentElement.dir = 'ltr';
   const { onOpen } = useDisclosure();
+
+  CheckIfLoggedIn();
   return (
     <Box>
       <SidebarContext.Provider

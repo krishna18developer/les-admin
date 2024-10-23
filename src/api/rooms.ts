@@ -1,16 +1,22 @@
 import axios from "axios";
 
-export type Subject = {
+export type Computer = {
+    SystemNumber: Number;
+    IsWorking: boolean;
+};
+
+export type Room = {
 	id: string;
-	SubjectName: number;
-	SubjectCode: string;
-	SubjectPattern: string;
-	QuestionSet: string[];
+	RoomName: string;
+	Department: string; 
+	Rows: Number; 
+	Columns: Number; 
+	Computers: Computer[][]; 
 };
 
 
-export async function GetAllSubjects(): Promise<Subject[]> {
-    const url = process.env.REACT_APP_LES_API_URL + "/v1/subjects/";
+export async function GetAllRooms(): Promise<Room[]> {
+    const url = process.env.REACT_APP_LES_API_URL + "/v1/rooms/";
     console.log(url);
 
     try {
@@ -24,13 +30,13 @@ export async function GetAllSubjects(): Promise<Subject[]> {
         return response.data.Data; // Return the questions array
 
     } catch (error) {
-        console.error("Error fetching questions:", error);
+        console.error("Error fetching rooms:", error);
         return null; // Return null if there's an error
     }
 }
 
-export function DeleteSubject(id: string) {
-    const url = process.env.REACT_APP_LES_API_URL + "/v1/subjects/" + id
+export function DeleteRoom(id: string) {
+    const url = process.env.REACT_APP_LES_API_URL + "/v1/rooms/" + id
     console.log(url)
 
     axios.delete(url, {
