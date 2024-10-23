@@ -2,9 +2,10 @@ import axios from "axios";
 
 export type Subject = {
 	id: string;
-	Difficulty: number;
-	QuestionTitle: string;
-	QuestionDescription: string;
+	SubjectName: number;
+	SubjectCode: string;
+	SubjectPattern: string;
+	QuestionSet: string[];
 };
 
 
