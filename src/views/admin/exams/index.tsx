@@ -2,26 +2,26 @@
 import { Box, SimpleGrid, Table } from '@chakra-ui/react';
 import ColumnsTable from 'views/admin/exams/components/ColumnsTable'
 import { useEffect, useState } from 'react';
-import { GetAllSubjects, Subject } from 'api/subjects';
+import { Exam, GetAllExams } from 'api/exams';
 
 export default function ExamsPage() {
-	const [subjects, setSubjects] = useState<Subject[]>([]);
+	const [exams, setExams] = useState<Exam[]>([]);
 
     useEffect(() => {
-        const fetchSubjects = async () => {
-            const result = await GetAllSubjects();
-            setSubjects(result || []);
-            console.log("Subjects fetched:", result);
+        const fetchExams = async () => {
+            const result = await GetAllExams();
+            setExams(result || []);
+            console.log("Exams fetched:", result);
         };
 
-        fetchSubjects();
+        fetchExams();
     }, []);
 
 	// Chakra Color Mode
 	return (
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
 			<SimpleGrid mb='20px' >
-				<ColumnsTable tableData={subjects.length ? subjects : []} />
+				<ColumnsTable tableData={exams.length ? exams : []} />
 			</SimpleGrid>
 		</Box>
 	);

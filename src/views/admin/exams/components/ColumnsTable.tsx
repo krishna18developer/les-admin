@@ -10,22 +10,22 @@ import {
 } from '@tanstack/react-table';
 
 import { MdDelete, MdEdit } from 'react-icons/md';
-import { DeleteSubject, Subject } from 'api/subjects';
+import { DeleteExam, Exam } from 'api/exams';
 
-const handleDeleteSubject = async (id: string) => {
-	if (window.confirm("Are you sure you want to delete this subject?")) {
-		await DeleteSubject(id);
+const handleDeleteExam = async (id: string) => {
+	if (window.confirm("Are you sure you want to delete this exam?")) {
+		await DeleteExam(id);
 		// Optionally refresh the data or the page
 		window.location.reload(); // This will refresh the page after deletion
 	}
 };
 
-const columnHelper = createColumnHelper<Subject>();
+const columnHelper = createColumnHelper<Exam>();
 
-export default function ColumnTable(props: { tableData: Subject[] }) {
+export default function ColumnTable(props: { tableData: Exam[] }) {
   const { tableData } = props;
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [data, setData] = React.useState<Subject[]>([]); // Initialize state as an empty array
+  const [data, setData] = React.useState<Exam[]>([]); // Initialize state as an empty array
   
   const textColor = useColorModeValue('secondaryGray.900', 'white');
   const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
@@ -39,15 +39,15 @@ export default function ColumnTable(props: { tableData: Subject[] }) {
   }, [tableData]);
 
   const columns = [
-    columnHelper.accessor('SubjectName', {
-      id: 'SubjectName',
+    columnHelper.accessor('ExamName', {
+      id: 'ExamName',
       header: () => (
         <Text
           justifyContent="space-between"
           align="center"
           fontSize={{ sm: '10px', lg: '12px' }}
           color="gray.400">
-          Course
+          Exam
         </Text>
       ),
       cell: (info: any) => (
@@ -58,15 +58,32 @@ export default function ColumnTable(props: { tableData: Subject[] }) {
         </Flex>
       ),
     }),
-    columnHelper.accessor('SubjectCode', {
-      id: 'SubjectCode',
+    columnHelper.accessor('ExamDuration', {
+      id: 'ExamDuration',
       header: () => (
         <Text
           justifyContent="space-between"
           align="center"
           fontSize={{ sm: '10px', lg: '12px' }}
           color="gray.400">
-          Subject Code
+          Duration
+        </Text>
+      ),
+      cell: (info) => (
+        <Text color={textColor} fontSize="sm" fontWeight="700">
+          {info.getValue() + " Minutes"}
+        </Text>
+      ),
+    }),
+    columnHelper.accessor('SubjectID', {
+      id: 'SubjectID',
+      header: () => (
+        <Text
+          justifyContent="space-between"
+          align="center"
+          fontSize={{ sm: '10px', lg: '12px' }}
+          color="gray.400">
+          Course
         </Text>
       ),
       cell: (info) => (
@@ -75,15 +92,83 @@ export default function ColumnTable(props: { tableData: Subject[] }) {
         </Text>
       ),
     }),
-    columnHelper.accessor('SubjectPattern', {
-      id: 'SubjectPattern',
+    columnHelper.accessor('NumberOfQuestions', {
+      id: 'NumberOfQuestions',
       header: () => (
         <Text
           justifyContent="space-between"
           align="center"
           fontSize={{ sm: '10px', lg: '12px' }}
           color="gray.400">
-          Pattern
+          Questions
+        </Text>
+      ),
+      cell: (info) => (
+        <Text color={textColor} fontSize="sm" fontWeight="700">
+          {info.getValue()}
+        </Text>
+      ),
+    }),
+    columnHelper.accessor('Branch', {
+      id: 'Branch',
+      header: () => (
+        <Text
+          justifyContent="space-between"
+          align="center"
+          fontSize={{ sm: '10px', lg: '12px' }}
+          color="gray.400">
+          Branch
+        </Text>
+      ),
+      cell: (info) => (
+        <Text color={textColor} fontSize="sm" fontWeight="700">
+          {info.getValue()}
+        </Text>
+      ),
+    }),
+    columnHelper.accessor('Sections', {
+      id: 'Sections',
+      header: () => (
+        <Text
+          justifyContent="space-between"
+          align="center"
+          fontSize={{ sm: '10px', lg: '12px' }}
+          color="gray.400">
+          Sections
+        </Text>
+      ),
+      cell: (info) => (
+        <Text color={textColor} fontSize="sm" fontWeight="700">
+          {info.getValue().join(", ")}
+        </Text>
+      ),
+    }),
+    columnHelper.accessor('Year', {
+      id: 'Year',
+      header: () => (
+        <Text
+          justifyContent="space-between"
+          align="center"
+          fontSize={{ sm: '10px', lg: '12px' }}
+          color="gray.400">
+          Year
+        </Text>
+      ),
+      cell: (info) => (
+        <Text color={textColor} fontSize="sm" fontWeight="700">
+          {info.getValue()}
+        </Text>
+      ),
+    }),
+    columnHelper.accessor('Regulation', {
+      id: 'Regulation',
+      header: () => (
+        <Text
+          justifyContent="space-between"
+          align="center"
+          fontSize={{ sm: '10px', lg: '12px' }}
+          color="gray.400">
+          Regulation
         </Text>
       ),
       cell: (info) => (
@@ -108,7 +193,7 @@ export default function ColumnTable(props: { tableData: Subject[] }) {
           <Button color={textColor}>
             <Icon as={MdEdit}></Icon>
           </Button>
-          <Button paddingLeft={5} color={deleteButtonColor} onClick={() => handleDeleteSubject(info.getValue())}>
+          <Button paddingLeft={5} color={deleteButtonColor} onClick={() => handleDeleteExam(info.getValue())}>
             <Icon as={MdDelete}></Icon>
           </Button>
         </>
