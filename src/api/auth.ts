@@ -13,10 +13,12 @@ export async function Login(username: string, password: string) {
                 'Content-Type': 'application/json'
             }
         }).then(({data}) => {
-            const token = data.Data.Token;
-            if(token)
+            if(data)
             {
+                const token = data.Data.Token;
+                const user_id = data.Data.User.id;
                 localStorage.setItem("token",token);
+                localStorage.setItem("user_id",user_id);
                 window.location.href = "/";
             }}).catch(()=>{
                 if(window.location.pathname !== '/auth/sign-in'){window.location.href = "/auth/sign-in";}

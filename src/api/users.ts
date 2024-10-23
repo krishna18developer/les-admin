@@ -1,4 +1,5 @@
 import axios from "axios";
+import api from "./api";
 
 export type User = {
 	id: string;
@@ -33,6 +34,24 @@ export async function GetAllUsers(): Promise<User[]> {
         return null; // Return null if there's an error
     }
 }
+
+export async function GetUser(id: string): Promise<User> {
+    try {
+        const response = await api.get("/v1/users/" + id, {
+            headers: {
+                Authorization: localStorage.getItem("token") || ''
+            },
+        });
+        
+        console.log(response.data.Data); // Log the fetched data
+        return response.data.Data; // Return the user
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        return null; // Return null if there's an error
+    }
+}
+
+
 
 export function DeleteUser(id: string) {
     const url = process.env.REACT_APP_LES_API_URL + "/v1/users/" + id

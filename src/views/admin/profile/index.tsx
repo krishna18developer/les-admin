@@ -12,8 +12,47 @@ import Upload from 'views/admin/profile/components/Upload';
 // Assets
 import banner from 'assets/img/auth/banner.png';
 import avatar from 'assets/img/avatars/avatar4.png';
+import { useEffect, useRef, useState } from 'react';
+import { GetUser, User } from 'api/users';
 
 export default function Overview() {
+		
+	const defaultUser = useRef<User>({
+	  id: "",
+	  Name: "",
+	  Username: "",
+	  Password: "",
+	  Email: "",
+	  Role: "",
+	  Year: -1,
+	  Branch: "",
+	  Section: "",
+	  Department: "",
+	});
+	const [user, setUser] = useState<User>(defaultUser.current); // Initialize with defaultUser
+
+	useEffect(() => {
+	  const fetchUser = async () => {
+		try {
+		  const userId = localStorage.getItem("user_id");
+		  if (userId) {
+			const result = await GetUser(userId);
+			setUser(result || defaultUser.current);
+			console.log("User fetched:", result);
+		  } else {
+			setUser(defaultUser.current);
+			console.log("No user ID found in localStorage");
+		  }
+		} catch (error) {
+		  console.error("Error fetching user:", error);
+		  setUser(defaultUser.current);
+		}
+	  };
+	
+	  fetchUser();
+	}, []);
+	
+
 	return (
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
 			{/* Main Fields */}
@@ -31,11 +70,8 @@ export default function Overview() {
 					gridArea='1 / 1 / 2 / 2'
 					banner={banner}
 					avatar={avatar}
-					name='Adela Parkson'
-					job='Product Designer'
-					posts='17'
-					followers='9.7k'
-					following='274'
+					name= {user.Name}
+					job={user.Role}
 				/>
 				<Storage gridArea={{ base: '2 / 1 / 3 / 2', lg: '1 / 2 / 2 / 3' }} used={25.6} total={50} />
 				<Upload

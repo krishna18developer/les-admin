@@ -29,10 +29,6 @@ export default function Footer() {
 				&copy; {new Date().getFullYear()}
 				<Text as='span' fontWeight='500' ms='4px'>
 					Kriaa Systems. All Rights Reserved.
-					Horizon UI. All Rights Reserved. Made with love by
-					<Link mx='3px' color={textColor} href='https://www.simmmple.com' target='_blank' fontWeight='700'>
-						Simmmple!
-					</Link>
 				</Text>
 			</Text>
 			<List display='flex'>
@@ -41,7 +37,7 @@ export default function Footer() {
 						base: '20px',
 						md: '44px'
 					}}>
-					<Link fontWeight='500' color={textColor} href='mailto:hello@simmmple.com'>
+					<Link fontWeight='500' color={textColor} href='mailto:support@labexaminationsystem.in'>
 						Support
 					</Link>
 				</ListItem>
@@ -50,7 +46,7 @@ export default function Footer() {
 						base: '20px',
 						md: '44px'
 					}}>
-					<Link fontWeight='500' color={textColor} href='https://www.simmmple.com/licenses'>
+					<Link fontWeight='500' color={textColor} href='https://www.labexaminationsystem.in/licenses'>
 						License
 					</Link>
 				</ListItem>
@@ -59,13 +55,8 @@ export default function Footer() {
 						base: '20px',
 						md: '44px'
 					}}>
-					<Link fontWeight='500' color={textColor} href='https://simmmple.com/terms-of-service'>
+					<Link fontWeight='500' color={textColor} href='https://labexaminationsystem.in/terms-of-service'>
 						Terms of Use
-					</Link>
-				</ListItem>
-				<ListItem>
-					<Link fontWeight='500' color={textColor} href='https://www.blog.simmmple.com/'>
-						Blog
 					</Link>
 				</ListItem>
 			</List>
