@@ -1,27 +1,27 @@
 // Chakra imports
-import { Box, SimpleGrid, Table } from '@chakra-ui/react';
+import { Box, SimpleGrid } from '@chakra-ui/react';
 import ColumnsTable from 'views/admin/rooms/components/ColumnsTable'
 import { useEffect, useState } from 'react';
-import { GetAllSubjects, Subject } from 'api/subjects';
+import { GetAllRooms, Room } from 'api/rooms';
 
 export default function RoomsPage() {
-	const [subjects, setSubjects] = useState<Subject[]>([]);
+	const [rooms, setRooms] = useState<Room[]>([]);
 
     useEffect(() => {
-        const fetchSubjects = async () => {
-            const result = await GetAllSubjects();
-            setSubjects(result || []);
+        const fetchRooms = async () => {
+            const result = await GetAllRooms();
+            setRooms(result || []);
             console.log("Subjects fetched:", result);
         };
 
-        fetchSubjects();
+        fetchRooms();
     }, []);
 
 	// Chakra Color Mode
 	return (
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
 			<SimpleGrid mb='20px' >
-				<ColumnsTable tableData={subjects.length ? subjects : []} />
+				<ColumnsTable tableData={rooms.length ? rooms : []} />
 			</SimpleGrid>
 		</Box>
 	);
