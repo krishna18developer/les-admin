@@ -9,13 +9,15 @@ import {
 } from '@chakra-ui/react';
 import initialTheme from './theme/theme'; //  { themeGreen }
 import { useState } from 'react';
-import MonitorExamPage from 'views/admin/monitor-exam';
+import MonitorExamPage from 'views/admin/exams/monitor';
+import { SocketContext, socket } from 'context/socket';
 // Chakra imports
 
 export default function Main() {
   // eslint-disable-next-line
   const [currentTheme, setCurrentTheme] = useState(initialTheme);
   return (
+    <SocketContext.Provider value={socket}>
     <ChakraProvider theme={currentTheme}>
       <Routes>
         <Route path="auth/*" element={<AuthLayout />} />
@@ -29,5 +31,7 @@ export default function Main() {
         <Route path= "/admin/exams/monitor/*" Component={MonitorExamPage} />
       </Routes>
     </ChakraProvider>
+    </SocketContext.Provider>
+    
   );
 }

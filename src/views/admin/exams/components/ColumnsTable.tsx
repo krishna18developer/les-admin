@@ -9,7 +9,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { MdDelete, MdEdit } from 'react-icons/md';
+import { MdDelete, MdEdit, MdMonitor } from 'react-icons/md';
 import { DeleteExam, Exam } from 'api/exams';
 
 const handleDeleteExam = async (id: string) => {
@@ -190,6 +190,9 @@ export default function ColumnTable(props: { tableData: Exam[] }) {
       ),
       cell: (info) => (
         <>
+          <Button color={textColor} onClick={() => window.location.href = "/admin/exams/monitor/" + info.getValue()}>
+            <Icon as={MdMonitor}></Icon>
+          </Button>
           <Button color={textColor}>
             <Icon as={MdEdit}></Icon>
           </Button>
