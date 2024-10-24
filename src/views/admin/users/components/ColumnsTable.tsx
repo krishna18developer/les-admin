@@ -89,6 +89,23 @@ export default function ColumnTable(props: { tableData: User[] }) {
         </Text>
       ),
     }),
+    columnHelper.accessor('Department', {
+      id: 'Department',
+      header: () => (
+        <Text
+          justifyContent="space-between"
+          align="center"
+          fontSize={{ sm: '10px', lg: '12px' }}
+          color="gray.400">
+          Department
+        </Text>
+      ),
+      cell: (info) => (
+        <Text color={textColor} fontSize="sm" fontWeight="700">
+          {info.getValue()+""}
+        </Text>
+      ),
+    }),
     columnHelper.accessor('Branch', {
       id: 'Branch',
       header: () => (
@@ -115,23 +132,6 @@ export default function ColumnTable(props: { tableData: User[] }) {
           fontSize={{ sm: '10px', lg: '12px' }}
           color="gray.400">
           Section
-        </Text>
-      ),
-      cell: (info) => (
-        <Text color={textColor} fontSize="sm" fontWeight="700">
-          {info.getValue()+""}
-        </Text>
-      ),
-    }),
-    columnHelper.accessor('Department', {
-      id: 'Department',
-      header: () => (
-        <Text
-          justifyContent="space-between"
-          align="center"
-          fontSize={{ sm: '10px', lg: '12px' }}
-          color="gray.400">
-          Department
         </Text>
       ),
       cell: (info) => (

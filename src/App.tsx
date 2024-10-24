@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import initialTheme from './theme/theme'; //  { themeGreen }
 import { useState } from 'react';
+import MonitorExamPage from 'views/admin/monitor-exam';
 // Chakra imports
 
 export default function Main() {
@@ -25,6 +26,7 @@ export default function Main() {
           }
         />
         <Route path="/" element={<Navigate to="/admin" replace />} />
+        <Route path= "/admin/exams/monitor/*" Component={MonitorExamPage} />
       </Routes>
     </ChakraProvider>
   );
